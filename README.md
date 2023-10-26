@@ -154,7 +154,7 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time. 
 
 ## Authors
-Abdelali Rami - [Github](https://github.com/alijr2018) / [Twitter](https://twitter.con/Alijr_2018)  
+Abdelali Rami - [Github](https://github.com/alijr2018) / [Twitter](https://twitter.com/Alijr_2018)
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
 
 Second part of Airbnb: Joann Vuong
