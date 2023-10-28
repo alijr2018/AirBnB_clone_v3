@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Index """
+""" Index."""
 from models.amenity import Amenity
 from models.city import City
 from models.place import Place
@@ -13,7 +13,7 @@ from flask import jsonify
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
 def status():
-    """ Status of API """
+    """ Status of API."""
     return jsonify({"status": "OK"})
 
 
