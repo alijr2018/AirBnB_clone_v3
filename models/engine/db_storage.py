@@ -88,7 +88,8 @@ class DBStorage:
         if cls:
             return self.__session.query(cls).count()
         else:
-            total_count = 0
-            for model_class in self.__models.values():
-                total_count += self.__session.query(model_class).count()
-            return total_count
+            count_t = sum(
+                self.__session.query(model).count()
+                for model in BaseModel.__subclasses__()
+                )
+            return count_t
