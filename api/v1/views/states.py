@@ -23,7 +23,7 @@ def get_state(state_id):
     return jsonify(state.to_dict())
 
 
-@app_views.route('/api/v1/states/<state_id>', methods=['DELETE'],
+@app_views.route('/states/<state_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_state(state_id):
     """ Delete a State Object. """
@@ -35,9 +35,11 @@ def delete_state(state_id):
     return (jsonify({}), 200)
 
 
-@app_views.route('/api/v1/states', methods=['POST'], strict_slashes=False)
+@app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
-    """ Create a State. """
+    """
+    Create a State.
+    """
     if not request.get_json():
         abort(400, description="Not a JSON")
 
@@ -50,11 +52,11 @@ def post_state():
     return make_response(jsonify(instance.to_dict()), 201)
 
 
-@app_views.route(
-        '/api/v1/states/<state_id>', methods=['PUT'], strict_slashes=False
-        )
+@app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def put_state(state_id):
-    """ Update a State. """
+    """
+    Update a State.
+    """
     state = State.get(state_id)
     if state is None:
         abort(404)
@@ -63,6 +65,7 @@ def put_state(state_id):
     if data is None:
         return jsonify({"error": "Not a JSON"}), 400
 
+    # Ignore keys: id, created_at, and updated_at
     for key, value in data.items():
         if key not in ['id', 'created_at', 'updated_at']:
             setattr(state, key, value)
