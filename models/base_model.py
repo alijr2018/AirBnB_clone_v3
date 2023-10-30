@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Contains class BaseModel
+Contain class BaseModel.
 """
 
 from datetime import datetime
@@ -53,7 +53,7 @@ class BaseModel:
                                          self.__dict__)
 
     def save(self):
-        """updates the attribute 'updated_at' with the current datetime"""
+        """Update the attribute 'updated_at' with the current datetime."""
         self.updated_at = datetime.utcnow()
         models.storage.new(self)
         models.storage.save()
@@ -74,5 +74,5 @@ class BaseModel:
         return new_dict
 
     def delete(self):
-        """delete the current instance from the storage."""
+        """Delete the current instance from the storage."""
         models.storage.delete(self)
