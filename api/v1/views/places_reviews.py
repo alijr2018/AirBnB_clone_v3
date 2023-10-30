@@ -10,7 +10,6 @@ from flask import abort, jsonify, make_response, request
 
 @app_views.route('/places/<place_id>/reviews', methods=['GET'],
                  strict_slashes=False)
-@swag_from('documentation/reviews/get_reviews.yml', methods=['GET'])
 def get_reviews(place_id):
     """
     Retrieve the list of all Review objects of a Place.
