@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ objects that handle all default RestFul API actions for States """
-from api.v1.views import app_views
 from models.state import State
 from models import storage
+from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
 
 
@@ -11,8 +11,11 @@ def get_states():
     """
     Retrieve the list of all State objects.
     """
-    states = storage.all(State).values()
-    return jsonify([state.to_dict() for state in states])
+    all_states = storage.all(State).values()
+    list_states = []
+    for state in all_states:
+        list_states.append(state.to_dict())
+    return jsonify(list_states)
 
 
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
@@ -28,7 +31,10 @@ def get_state(state_id):
 @app_views.route('/states/<state_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_state(state_id):
-    """ Delete a State Object. """
+    """
+    Delete a State Object.
+    """
+
     state = storage.get(State, state_id)
 
     if not state:
@@ -42,7 +48,9 @@ def delete_state(state_id):
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
-    """ Create a State. """
+    """
+    Create a State.
+    """
     if not request.get_json():
         abort(400, description="Not a JSON")
 
