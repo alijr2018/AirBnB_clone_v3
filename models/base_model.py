@@ -48,7 +48,7 @@ class BaseModel:
             self.updated_at = self.created_at
 
     def __str__(self):
-        """String representation of the BaseModel class"""
+        """String representation of the BaseModel class."""
         return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
                                          self.__dict__)
 
@@ -59,7 +59,7 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self, save_hash):
-        """returns a dictionary containing all keys/values of the instance"""
+        """Return a dictionary containing all keys/values of the instance."""
         new_dict = self.__dict__.copy()
         if "created_at" in new_dict:
             new_dict["created_at"] = new_dict["created_at"].strftime(time)
@@ -74,5 +74,5 @@ class BaseModel:
         return new_dict
 
     def delete(self):
-        """delete the current instance from the storage"""
+        """delete the current instance from the storage."""
         models.storage.delete(self)
