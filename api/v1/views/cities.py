@@ -10,10 +10,8 @@ from flask import abort, jsonify, make_response, request
 @app_views.route('/states/<state_id>/cities', methods=['GET'],
                  strict_slashes=False)
 def get_cities(state_id):
-    """
-    Retrieve the list of all cities objects.
-    of a specific State, or a specific city
-    """
+    """ Retrieve the list of all cities objects.
+        of a specific State, or a specific city. """
     list_cities = []
     state = storage.get(State, state_id)
     if not state:
@@ -21,7 +19,7 @@ def get_cities(state_id):
     for city in state.cities:
         list_cities.append(city.to_dict())
 
-    return jsonify(list_cities)
+    return (jsonify(list_cities))
 
 
 @app_views.route('/cities/<city_id>/', methods=['GET'], strict_slashes=False)
